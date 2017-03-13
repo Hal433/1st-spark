@@ -2,7 +2,7 @@ version: '2'
 services:
   spark-master:
     image: hal433/spark-2.1.0-bin-hadoop2.7
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
     hostname: spark-master
     environment:
       MASTER: spark://spark-master:7077
@@ -27,7 +27,7 @@ services:
       - ./data:/tmp/data  
   spark-worker:
     image: hal433/spark-2.1.0-bin-hadoop2.7
-    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     hostname: spark-worker
     environment:
       SPARK_CONF_DIR: /conf
